@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>Author</td>
+      <td>Name</td>
+      <td>Publisher</td>
+		  <td>Bookshop</td>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= Author.where(id: book.author_id).pluck(:name).to_s[2..-3] %></td>
+        <td><%= book.name %></td>
+        <td><%= Publisher.where(id: book.publisher_id).pluck(:name).to_s[2..-3]%></td>
+        <td><%= Bookshop.where(id: book.bookshop_id).pluck(:name).to_s[2..-3] %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Find book', new_polymorphic_path(Search) %>
+<br>
+<%= link_to 'New Book', new_book_path %>
+<%= link_to 'New Bookshop', new_polymorphic_path(Bookshop.new) %>
+<%= link_to 'New Publisher', new_polymorphic_path(Publisher.new) %>
+<%= link_to 'New Author', new_polymorphic_path(Author.new) %>
+<br>
+<%= link_to 'Publisher', new_polymorphic_path(Publisher) %>
+<%= link_to 'Bookshop', new_polymorphic_path(Bookshop) %>
+<%= link_to 'Author', new_polymorphic_path(Author.new) %>

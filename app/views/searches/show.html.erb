@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of this book:</strong>
+  <%= @search.name %>
+</p>
+<p>
+  <strong>Author(s) of this book is:</strong>
+  <% aid = Book.where(name: @search.name).pluck(:author_id) %>
+  <% aid.each do |el| %>
+  <%= Author.where(id: el).pluck(:name).to_s[2..-3] %>;
+  <% end %>
+</p>
+
+<p>
+  <strong>Book can be finded in:</strong>
+  <% aid = Book.where(name: @search.name).pluck(:bookshop_id) %>
+  <% aid.each do |el| %>
+  <%= Bookshop.where(id: el).pluck(:name).to_s[2..-3] %>;
+  <% end %>
+</p>
+
+<p>
+  <strong>Publisher is:</strong>
+  <% aid = Book.where(name: @search.name).pluck(:publisher_id) %>
+  <%= Publisher.where(id: aid).pluck(:name).first %>;
+</p>
+
+<%= link_to 'Edit', edit_search_path(@search) %> |
+<%= link_to 'Back', searches_path %>

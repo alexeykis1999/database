@@ -1,0 +1,25 @@
+<h1>New Book (FOR EVERY FIELD [EXCEPT OF NAME] USE ID WHITCH U CAN SEE BELOW)</h1>
+<h3>Authors</h3>
+<% @authors.each do |book| %>
+	<%= book.id %>
+	<%= book.name %>|
+<% end %>
+
+<h3>Publishers</h3>
+<% @publishers.each do |book| %>
+	<%= book.id %>
+	<%= book.name %> |
+<% end %>
+
+<h3>Bookshops</h3>
+<% @bookshops.each do |book| %>
+	<%= book.id %>
+	<%= book.name %>|
+<% end %>
+
+<br>
+-----------------------------
+
+<%= render 'form', book: @book%>
+
+<%= link_to 'Back', books_path %>
