@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 2021_09_01_195318) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "author_id"
-    t.integer "publisher_id"
-    t.integer "bookshop_id"
+    t.integer "author_id", null: false
+    t.integer "publisher_id", null: false
+    t.integer "bookshop_id", null: false
     t.index ["name"], name: "index_books_on_name"
   end
 
